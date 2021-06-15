@@ -1,0 +1,12 @@
+﻿@model VidlyAppWithLatestAuth.Models.Customer
+@{
+    ViewBag.Title = Model.Name;  
+}
+<h2>@Model.Name</h2>
+<ul>
+    <li>Membership Type: @Model.MembershipType.Name</li>
+    @if (Model.DateOfBirth.HasValue)
+    {
+        <li>Birthdate: @Model.DateOfBirth.Value.ToShortDateString()</li>
+    }
+</ul>
