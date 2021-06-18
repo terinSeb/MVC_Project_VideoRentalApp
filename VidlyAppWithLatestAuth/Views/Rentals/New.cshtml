@@ -88,18 +88,24 @@
 
           var validator =  $('#newRental').validate({
                 submitHandler: function () {
-                    e.preventDefault();
+                    
                     $.ajax({
                         url: "/api/NewRentals",
                         method: "post",
                         data: vm
                     })
                         .done(function () {
+                            toastr.success("Rentals Successfully recorded.");
+                            $('#customer').typeahead('val', '');
+                            $('#movies').typeahead('val', '');
+                            $('#myMovies').empty();
+                            vm = { movieIds: [] };
                             validator.resetForm();
                         })
                         .fail(function () {
                             toastr.error("Something Unexpected Happen.");
-                        })            
+                        })     
+                  return false;
                 }
             });
            

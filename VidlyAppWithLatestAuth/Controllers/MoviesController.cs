@@ -101,6 +101,7 @@ namespace VidlyAppWithLatestAuth.Controllers
             if(movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;
+                movie.NumberAvailable = movie.NumberInStock;
                 _context.Movies.Add(movie);
             }
             else
@@ -109,10 +110,11 @@ namespace VidlyAppWithLatestAuth.Controllers
                 MovieInRb.Name = movie.Name;
                 MovieInRb.ReleaseDate = movie.ReleaseDate;
                 MovieInRb.GenreId = movie.GenreId;
-                MovieInRb.NumberInStock = movie.NumberInStock;                
+                MovieInRb.NumberInStock = movie.NumberInStock;
+                MovieInRb.NumberAvailable = movie.NumberInStock;
             }
             _context.SaveChanges();
-            return RedirectToAction("GetMovies", "Movies");
+            return RedirectToAction("Index", "Movies");
         }
     }
 }
